@@ -45,4 +45,4 @@ finally:
         print(f"Time taken to close the browser: {time.time() - start_time:.2f} seconds")
 total_time = time.time() - total_start_time
 print(f"Total execution time: {total_time:.2f} seconds")
-acuma
+
