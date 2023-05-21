@@ -1,0 +1,43 @@
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.service import Service
+import time
+
+driver = None
+total_start_time = time.time()  # Definirea variabilei total_start_time
+try:
+    start_time = time.time()
+    s = Service("e:\\projects\\headless\\chromedriver.exe")
+    driver = webdriver.Chrome(service=s)
+    driver.get("https://cv.upt.ro/login/index.php")
+    login_email = driver.find_element(By.ID, "username")
+    print(f"Time taken to find the login email field: {time.time() - start_time:.2f} seconds")
+    start_time = time.time()
+    login_email.send_keys("cosmin.maroiu@student.upt.ro")
+    print(f"Time taken to enter the login email: {time.time() - start_time:.2f} seconds")
+    start_time = time.time()
+    login_password = driver.find_element(By.ID, "password")
+    print(f"Time taken to find the login password field: {time.time() - start_time:.2f} seconds")
+    start_time = time.time()
+    login_password.send_keys("ursulbrun123123")
+    print(f"Time taken to enter the login password: {time.time() - start_time:.2f} seconds")
+    start_time = time.time()
+    login_button = driver.find_element(By.ID, "loginbtn")
+    print(f"Time taken to find the login button: {time.time() - start_time:.2f} seconds")
+    start_time = time.time()
+    login_button.click()
+    print(f"Time taken to click the login button: {time.time() - start_time:.2f} seconds")
+    start_time = time.time()
+    # Access the course page here
+    driver.get("https://cv.upt.ro/course/view.php?id=2068")
+    print(f"Time taken to access the course page: {time.time() - start_time:.2f} seconds")
+
+except Exception as e:
+    print(e)
+finally:
+    if driver is not None and driver.window_handles:
+        start_time = time.time()
+        driver.quit()
+        print(f"Time taken to close the browser: {time.time() - start_time:.2f} seconds")
+total_time = time.time() - total_start_time
+print(f"Total execution time: {total_time:.2f} seconds")
