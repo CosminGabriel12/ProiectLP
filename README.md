@@ -1,0 +1,2 @@
+# ProiectLP
+Proiectul pentru LP 
